@@ -13,6 +13,7 @@
  <%= item.id %>
  <%= link_to item.name, admin_item_path(item) %>
  <%= item.price %>
+ 
  <%= item.genre.name %>
  <% if item.is_active? %>
   <strong>販売中</strong>
