@@ -4,8 +4,7 @@
    
     <%= f.label :商品画像 %>
     <%= f.file_field :image, accept: "image/*" %>
-
-   
+    <%= f.hidden_field :image_id %>
     <%= f.label :商品名 %>
     <%= f.text_field :name, placeholder: "商品名" %>
 
