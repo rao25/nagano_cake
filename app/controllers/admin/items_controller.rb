@@ -1,5 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
+  layout 'admin'
 
   def index
     @items = Item.all
@@ -31,7 +32,6 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to admin_item_path(@item)
     else
-      flash[:item_updated_error] = "商品情報が正常に保存されませんでした。"
       redirect_to edit_admin_item_path(@item)
     end
   end

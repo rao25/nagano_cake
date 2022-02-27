@@ -11,25 +11,28 @@
 
   <body>
     <header>
-             <% if customer_signed_in? %>
+              <% if admin_signed_in? %>
                 <li>
-                  <%= link_to "マイページ", customers_path %>
+                  <%= link_to "商品一覧", admin_items_path %>
                 </li>
                 <li>
-                  <%= link_to "商品一覧", products_path %>
+                  <%= link_to "会員一覧", admin_customers_path %>
                 </li>
                 <li>
-                  <%= link_to "カート", cart_products_path %>
+                  <%= link_to "注文履歴一覧", admin_root_path %>
                 </li>
                 <li>
-                  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                  <%= link_to "ジャンル一覧", admin_genres_path %>
                 </li>
-              <% else %>
+                <li>
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                </li>
+                <% else %>
                 <li>
                   <%= link_to "About", about_path %>
                 </li>
                 <li>
-                  <%= link_to "商品一覧", products_path %>
+                  <%= link_to "商品一覧", items_path %>
                 </li>
                 <li>
                   <%= link_to "新規登録", new_customer_registration_path %>
@@ -39,15 +42,16 @@
                 </li>
               <% end %>
     </header>
+    
     <main>
         <%= yield %>
     </main>
-    
+
     <footer>
-      <div>
-        Copyright © 2021 DMM WebCamp:Glass_Tech-Nagano_Cake All Rights Reserved.
-      </div>
+        <div>
+          Copyright © 2021 DMM WebCamp:Glass_Tech-Nagano_Cake All Rights Reserved.
+        </div>
     </footer>
 
   </body>
-</html>    
+</html>
