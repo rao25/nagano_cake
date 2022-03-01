@@ -12,9 +12,9 @@ devise_for :customers,skip: [:passwords], controllers: {
     get "/customers/quit", to: "customers#quit"
     patch "/customers/out", to: "customers#out"
     resource :customers, only:[:show, :edit, :update]
-    resources :products, only:[:index, :show]
-    resources :cart_products, except:[:show, :new, :edit]
-    delete "/cart_products", to: "cart_products#destroy_all"
+    resources :items, only:[:index, :show]
+    resources :cart_items, except:[:show, :new, :edit]
+    delete "/cart_items", to: "cart_items#destroy_all"
     resources :orders, except:[:edit, :update, :destroy] do
       collection do
         get "complete"
@@ -23,9 +23,6 @@ devise_for :customers,skip: [:passwords], controllers: {
     end
     resources :deliveries, except:[:new, :show]
     
-    # 検索機能
-    get '/genre_search', to: "searches#genre_search"
-    get '/product_search', to: "searches#product_search"
   end
 
 # 管理者用
