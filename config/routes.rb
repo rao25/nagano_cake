@@ -9,19 +9,19 @@ devise_for :customers,skip: [:passwords], controllers: {
 }
   scope module: :public do
     get "/about", to: "homes#about"
-    get "/customers/quit", to: "customers#quit"
-    patch "/customers/out", to: "customers#out"
+    get "/customers/retention", to: "customers#retention"
+    patch "/customers/withdraw", to: "customers#withdraw"
     resource :customers, only:[:show, :edit, :update]
     resources :items, only:[:index, :show]
     resources :cart_items, except:[:show, :new, :edit]
     delete "/cart_items", to: "cart_items#destroy_all"
     resources :orders, except:[:edit, :update, :destroy] do
       collection do
-        get "complete"
-        post "check"
+        get "thanks"
+        post "confirm"
       end
     end
-    resources :deliveries, except:[:new, :show]
+    resources :addresses, except:[:new, :show]
     
   end
 
