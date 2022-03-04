@@ -3,18 +3,23 @@ Rails.application.routes.draw do
 # 顧客用
 root to: "public/homes#top"
 # URL /customers/sign_in ...
-devise_for :customers,skip: [:passwords], controllers: {
+devise_for :customer,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-  scope module: :public do
+
+ scope module: :public do
     get "/about", to: "homes#about"
+    
+    resource :customers, only:[:show, :edit, :update]
     get "/customers/retention", to: "customers#retention"
     patch "/customers/withdraw", to: "customers#withdraw"
-    resource :customers, only:[:show, :edit, :update]
+    
     resources :items, only:[:index, :show]
+    
     resources :cart_items, except:[:show, :new, :edit]
     delete "/cart_items", to: "cart_items#destroy_all"
+    
     resources :orders, except:[:edit, :update, :destroy] do
       collection do
         get "thanks"
@@ -24,6 +29,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     resources :addresses, except:[:new, :show]
     
   end
+    
 
 # 管理者用
 # URL /admin/sign_in ...
