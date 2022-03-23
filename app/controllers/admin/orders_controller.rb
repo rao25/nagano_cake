@@ -3,11 +3,7 @@ class Admin::OrdersController < ApplicationController
   layout 'admin'
   
   def index
-   if params[:customer_id]
-     @orders = Order.where(customer_id: params[:customer_id])
-   else
-     @orders = Order.all.order(created_at: :desc)
-   end
+     @orders = Order.all
   end
 
   def show

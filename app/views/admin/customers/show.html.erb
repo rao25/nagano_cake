@@ -1,32 +1,57 @@
-<h3><%= @customer.full_name_no_blanks %>さんの会員詳細</h3>
-
-    <p>会員ID</p>
-    <%= @customer.id %>
-
-    <p>氏名</p>
-    <%= @customer.full_name %>
-
-    <p>フリガナ</p>
-    <%= @customer.full_name_kana %>
-
-    <p>郵便番号</p>
-    <%= @customer.postal_code %>
-  
-    <p>住所</p>
-    <%= @customer.address %>
-
-    <p>電話番号</p>
-    <%= @customer.telephone_number %>
-
-    <p>メールアドレス</p>
-    <%= @customer.email %>
-
-    <p>会員ステータス</p>
-    <% if @customer.is_active? %>
-    <strong>退会</strong>
-    <% else %>
-    <strong>有効</strong>
-    <% end %>
-    
-<%= link_to "編集する", edit_admin_customer_path(@customer) %>
-<%= link_to "注文履歴一覧を見る", admin_orders_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 my-5">
+      <h3><%= @customer.full_name_no_blanks %>さんの会員詳細</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+           <td>会員ID</td>
+           <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+           <td>氏名</td>
+           <td><%= @customer.full_name %></td>
+          </tr>
+          <tr>
+           <td>フリガナ</td>
+           <td><%= @customer.full_name_kana %></td>
+          </tr>
+          <tr>
+           <td>郵便番号</td>
+           <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+           <td>住所</td>
+           <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+           <td>電話番号</td>
+           <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+           <td>メールアドレス</td>
+           <td><%= @customer.email %></td>
+          </tr>
+          <tr>
+           <td>会員ステータス</td>
+           <td>
+           <% if @customer.is_active? %>
+           <strong>退会</strong>
+           <% else %>
+           <strong>有効</strong>
+           <% end %>
+           </td>
+          </tr>
+          <tr>
+           <td><%= link_to "編集する", edit_admin_customer_path(@customer) %></td>
+           <td><%= link_to "注文履歴一覧を見る", admin_orders_path %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div> 
+</div>

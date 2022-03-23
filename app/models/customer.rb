@@ -23,4 +23,11 @@ class Customer < ApplicationRecord
   def full_address
     "〒" + self.postal_code + "  " + self.address + last_name + " " + first_name
   end
+  
+  def cart_items_total_price
+    sum = 0
+    self.cart_items.each { |cart_item| sum += cart_item.sum_of_price }
+    return sum
+  end
+  
 end
