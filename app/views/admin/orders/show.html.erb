@@ -55,14 +55,14 @@
           </tr>
         </thead>
         <tbody>
-        <% @order.order_details.each do |order_details| %>
+        <% @order.order_details.each do |order_detail| %>
           <tr>
-            <td><%= order_details.item.name %></td>
-            <td><%= order_details.tax_included_price %></td>
-            <td><%= order_details.quantity %></td>
-            <td><%= order_details.sum_of_price %></td>
-            <%= form_with model:[:admin, order_details], local: true do |f| %>
-            <td><%= f.collection_select(:making_status, OrderDetail.making_statuses_i18n, :first, :last,  { selected: order_details.making_status })%></td>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.tax_included_price %></td>
+            <td><%= order_detail.quantity %></td>
+            <td><%= order_detail.sum_of_price %></td>
+            <%= form_with model:[:admin, order_detail], local: true do |f| %>
+            <td><%= f.collection_select(:making_status, OrderDetail.making_statuses_i18n, :first, :last,  { selected: order_detail.making_status })%></td>
             <td><%= f.submit "更新",  class:"btn btn-success" %></td>
             <% end %>
           </tr>
@@ -88,3 +88,5 @@
     </div>
   </div>
 </div>
+
+

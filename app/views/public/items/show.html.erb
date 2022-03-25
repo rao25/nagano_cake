@@ -1,28 +1,27 @@
- <h1>ジャンル検索</h1>
+<div class="container">
+  <div class="row">
+  　<div class="col-md-12 mx-auto" style="height: 50px;"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag @item.image, size: "300x250" %>
+    </div>
+    <div class="col-md-8">
+      <h3><%= @item.name %></h3>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= @item.tax_included_price.to_s(:delimited) %>（税込）</p>
   
-    <% @genres.each do |genre| %>
-    
-     <%= genre.name %>
-    
-    <% end %>
-    
- 
-   <%= image_tag @item.image, size: "300x250" %>
- 
-    <h4><%= @item.name %></h4>
-    <%= @item.introduction %>
-    ¥<%= @item.tax_included_price.to_s(:delimited) %>
-    （税込）
-    
-    <% if customer_signed_in? %>
+      <% if customer_signed_in? %>
       <% if @item.is_active? %>
-          
         <%= form_with model: @cart_items, url: cart_items_path, method: :post, local: true do |f| %>
-          <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-          <%= f.hidden_field :item_id, :value => @item.id %>
-          <%= f.submit "カートに入れる" %>
+        <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit "カートに入れる" %>
         <% end %>
       <% else %>
           売切れ
       <% end %>
-    <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

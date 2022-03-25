@@ -7,5 +7,9 @@ class CartItem < ApplicationRecord
    item.tax_included_price * amount
   end 
   
- 
+  def tax_included_price
+   (item.price * 1.08).round
+  end 
+  
+  
 end

@@ -7,4 +7,6 @@ class OrderDetail < ApplicationRecord
   def sum_of_price
     (self.tax_included_price * self.quantity).round
   end
+  
+
 end

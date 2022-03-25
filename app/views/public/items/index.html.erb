@@ -1,24 +1,29 @@
-    <h1>ジャンル検索</h1>
-  
-    <% @genres.each do |genre| %>
-    
-     <%= genre.name %>
-    
-    <% end %>
-      
-
-    
-      <h3>
-        商品一覧
-        （全<%= @items.total_count %>件)
-      </h3>
-      
-      <% @items.each do |item| %>
-         <%= link_to item_path(item) do %>
-         <%= image_tag item.image, size: "200x150" %>
-         <% end %>
-         <%= item.name %>
-         ¥<%= item.tax_included_price.to_s(:delimited) %>
-      <% end %>
+<div class="container px-5 py-5">
+  <div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 d-flex flex-row ">
+      <h3>商品一覧</h3>
+      <div class="pt-2 pl-2">（全<%= @items.total_count %>件)</div>
+    </div>
+  </div>
+<div class="container">
+  <div class="row">
+  <% @items.each do |item| %>
+    <div class="card-group">
+    <div class="card card border-light mb-3 ml-1 mr-1">
+      <div class="card-img-top">
+        <%= link_to item_path(item) do %>
+        <%= image_tag item.image, size: "200x150" %>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= item.name %></h5>
+        <p class="card-text">¥<%= item.tax_included_price.to_s(:delimited) %></p>
+      </div>
+    </div>
+    </div>
+  <% end %>
+  </div>
+</div>
       
     

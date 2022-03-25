@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
   layout 'admin'
   
   def index
-     @orders = Order.all
+     @orders = Order.all.order(created_at: :desc).page(params[:page])
   end
 
   def show

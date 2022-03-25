@@ -34,19 +34,30 @@ end
 
   def create
     @order = current_customer.orders.new(order_params)
-    @order.save
+    if @order.save
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart|
+    order_detail = OrderDetail.new
+    order_detail.item_id = cart.item_id
+    order_detail.order_id = @order.id
+    order_detail.quantity = cart.amount
+    order_detail.tax_included_price = cart.tax_included_price
+    order_detail.save
+    end
     current_customer.cart_items.destroy_all
     redirect_to thanks_orders_path
+    else
+    render :new
+    end
   end
 
   def index
     @orders = current_customer.orders.order(created_at: :desc)
-    @order_details = OrderDetail.all
   end
-
+  
   def show
     @order = current_customer.orders.find(params[:id])
-    @order_details = OrderDetail.all
+    
   end
 
 
