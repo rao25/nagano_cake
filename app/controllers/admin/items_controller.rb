@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   layout 'admin'
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def show
@@ -17,9 +17,9 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
-      redirect_to new_admin_item_path
+      render :new
     end
   end
 

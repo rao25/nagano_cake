@@ -3,6 +3,6 @@ class Admin::HomesController < ApplicationController
   layout 'admin'
   
   def top
-    @orders = Order.all.order(created_at: :desc)
+    @orders = Order.all.order(created_at: :desc).page(params[:page])
   end
 end

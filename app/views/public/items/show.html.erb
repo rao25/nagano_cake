@@ -16,7 +16,7 @@
         <%= form_with model: @cart_items, url: cart_items_path, method: :post, local: true do |f| %>
         <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
         <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.submit "カートに入れる" %>
+        <%= f.submit "カートに入れる", class:"btn btn-success btn-sm"  %>
         <% end %>
       <% else %>
           売切れ
@@ -25,3 +25,4 @@
     </div>
   </div>
 </div>
+
